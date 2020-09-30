@@ -1,0 +1,58 @@
+import { ActionTypes } from "../constants/actionTypes";
+
+let initialQuiz = {
+  quiz: {
+    config: {
+      allowBack: true,
+      allowReview: true,
+      autoMove: false,
+      duration: 0, 
+      pageSize: 1,
+      requiredAll: false,
+      richText: false,
+      shuffleQuestions: false,
+      shuffleOptions: false,
+      showClock: false,
+      showPager: true,
+      theme: "none",
+    },
+    questions: [],
+  },
+  mode: "quiz",
+  pager: {
+    index: 0,
+    size: 1,
+    count: 1,
+  },
+};
+
+export default (state = { ...initialQuiz }, action) => {
+  switch (action.type) {
+    case ActionTypes.PagerUpdate:
+      return {
+        ...state,
+        pager: action.payload,
+        mode: "quiz",
+      };
+    case ActionTypes.QuizLoad:
+      console.log("QuizLoad");
+      return {
+        ...state,
+        quiz: action.payload,
+      };
+    case ActionTypes.QuizSubmit:
+      console.log("quiz.js Submitted.");
+      return {
+        ...state,
+        mode: action.payload,
+      };
+    case ActionTypes.QuizAnswer:
+      console.log("quiz.js reducer Quiz Answer called.");
+      return {
+        ...state,
+        quiz: action.payload,
+      };
+    default:
+      return state;
+  }
+};
