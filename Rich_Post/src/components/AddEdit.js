@@ -3,13 +3,16 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../reducers/actions";
 import { useState } from "react";
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import "../App.css";
 
 function AddEdit(props) {
   let todos = useSelector((state) => state);
   console.log("todos", todos);
   const handelNext = () => {
-    props.history.push("/rich_text");
+    props.history.push("/like");
   };
   return (
     <div class="flex flex-col">
@@ -43,7 +46,12 @@ function AddEdit(props) {
                   </td>
                 </tr>
               </tbody>
-              <button onClick={handelNext} class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">Next</button>
+              <button
+                onClick={handelNext}
+                class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+              >
+                Next
+              </button>
             </table>
           </div>
         </div>
@@ -70,11 +78,13 @@ function TodoItem({ todo }) {
             <table class="min-w-full divide-y divide-gray-200">
               {editable ? (
                 <>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={name}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setName(data);
+                    }}
                   />
                 </>
               ) : (

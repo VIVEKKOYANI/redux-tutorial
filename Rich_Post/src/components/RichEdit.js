@@ -43,7 +43,7 @@ function RichEdit(props) {
             );
             setName("");
             console.log("pops", name);
-            props.history.push("/like");
+            props.history.push("/add-edit");
           }}
         >
           Add

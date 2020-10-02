@@ -23,7 +23,7 @@ export default class Create extends Component {
                 <div class="hidden md:block">
                   <div class="ml-10 flex items-baseline space-x-4"></div>
                   <a
-                    href="/posts"
+                    href="/rich_text"
                     class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
                   >
                     CREATE
