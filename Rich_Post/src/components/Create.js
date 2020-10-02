@@ -1,39 +1,62 @@
-import React, { Component } from "react";
-import { BrowserRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { ADD_LIKE } from "../reducers/actions";
+import ReactHtmlParser from 'react-html-parser';
 
-export default class Create extends Component {
-  // handelPost = () => {
-  //   console.log(this.props);
-  //   this.props.history.push("/posts");
-  // };
-  render() {
-    return (
-      <div>
-        <nav class="bg-gray-800">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-              <div class="flex items-center">
-                <div class="flex-shrink-0">
-                  <img
-                    class="h-8 w-8"
-                    src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
-                    alt="Workflow logo"
-                  />
-                </div>
-                <div class="hidden md:block">
-                  <div class="ml-10 flex items-baseline space-x-4"></div>
-                  <a
-                    href="/rich_text"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
-                  >
-                    CREATE
-                  </a>
-                </div>
-              </div>
+function Create(props) {
+  const handelPost = () => {
+    console.log(props);
+    props.history.push("/add");
+  };
+  let todos = useSelector((state) => state);
+  console.log("todos", todos);
+  const handelNext = () => {
+    props.history.push("/edit");
+  };
+  let dispatch = useDispatch("");
+  const [like, setLike] = useState(false);
+  const handelLike = () => {
+    setLike(!like);
+  };
+  const handelComment = () => {
+    return <input type="text" />;
+  };
+  const label = like ? "Unlike" : "Like";
+  return (
+    <div>
+      <button
+        onClick={handelPost}
+        className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+      >
+        CREATE
+      </button>
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+        <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
+          <h1 class="mt-1 max-w-2xl text-sm leading-5 text-gray-500">Post</h1>
+        </div>
+        <div>
+          <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm leading-5 font-medium text-gray-500">
+                {todos.map((todo) => {
+                  return (
+                    <div >
+                      <p></p>
+                      <h1>{ReactHtmlParser(todo.name)}</h1>
+                      <button onClick={handelLike}>{label}</button>
+                      {"  "}
+                      <button onClick={handelComment}>comment</button>
+                    </div>
+                  );
+                })}
+              </dt>
             </div>
-          </div>
-        </nav>
+          </dl>
+        </div>
+        <button onClick={handelNext}>EDIT</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default Create;

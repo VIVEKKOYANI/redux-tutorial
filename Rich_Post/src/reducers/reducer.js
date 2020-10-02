@@ -1,4 +1,10 @@
-import { ADD_TODO, DELETE_TODO, UPDATE_TODO } from "./actions";
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  UPDATE_TODO,
+  ADD_LIKE,
+  ADD_DISHLIKE,
+} from "./actions";
 import { todos } from "./state";
 
 {
@@ -31,10 +37,12 @@ const reducer = (state = todos, action) => {
         console.log(newTodos);
         return newTodos;
       }
-    case "LIKE":
-      return state + 1;
-    case "DISLIKE":
-      return state - 1;
+    case ADD_LIKE:
+      newTodos = [...state];
+      return newTodos + 1;
+    case ADD_DISHLIKE:
+      newTodos = [...state];
+      return newTodos - 1;
   }
   return state;
 };

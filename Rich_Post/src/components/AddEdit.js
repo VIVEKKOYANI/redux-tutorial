@@ -12,7 +12,7 @@ function AddEdit(props) {
   let todos = useSelector((state) => state);
   console.log("todos", todos);
   const handelNext = () => {
-    props.history.push("/like");
+    props.history.push("/posts");
   };
   return (
     <div class="flex flex-col">

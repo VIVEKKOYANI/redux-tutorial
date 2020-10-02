@@ -11,11 +11,11 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <Route exact path="/" component={Create} />
-          <Route exact path="/posts" component={Post} />
-          <Route exact path="/add-edit" component={AddEdit} />
-          <Route exact path="/rich_text" component={RichEdit} />
-          <Route exact path="/like" component={LinkeComment} />
+          <Route exact path="/posts" component={Create} />
+          {/* <Route exact path="/" component={Post} /> */}
+          <Route exact path="/edit" component={AddEdit} />
+          <Route exact path="/add" component={RichEdit} />
+          {/* <Route exact path="/like" component={LinkeComment} /> */}
         </Router>
       </div>
     );

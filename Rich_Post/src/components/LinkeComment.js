@@ -7,6 +7,7 @@ function LinkeComment(props) {
   const handelNext = () => {
     props.history.push("/");
   };
+
   return (
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
       <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
@@ -23,6 +24,7 @@ function LinkeComment(props) {
                 return (
                   <div key={todo.id.length > 1 ? todo.id[2] : todo.id}>
                     <h1>{todo.name}</h1>
+                    <button>Like</button>
                   </div>
                 );
               })}
